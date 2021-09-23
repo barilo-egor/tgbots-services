@@ -1,6 +1,6 @@
-package by.barilo.bot;
+package by.barilo.tgbotsservices.bot;
 
-import by.barilo.services.MenuLoader;
+import by.barilo.tgbotsservices.services.MenuLoader;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
@@ -29,10 +29,6 @@ public class TestBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        try {
-            execute(SendMessage.builder().chatId(update.getMessage().getChatId().toString()).text("qwe").replyMarkup(MenuLoader.getMain()).build());
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
-        }
+
     }
 }
