@@ -1,4 +1,4 @@
-package by.barilo.enums;
+package by.barilo.tgbotsservices.enums;
 
 public enum MenuItemsAttribute {
     ID("id"),

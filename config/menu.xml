@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menu>
+    <item title="1" id="first"/>
+    <item title="1-1" moduleId="module1" parent="first"/>
+    <item title="1-2" moduleId="module2" parent="first"/>
+    <item title="2" id="second"/>
+    <item title="2-1" moduleId="module3" parent="second"/>
+    <item title="2-2" moduleId="module4" parent="second"/>
+    <item title="2-3" moduleId="module5" parent="second"/>
+    <item title="2-4" moduleId="module6" parent="second"/>
+</menu>

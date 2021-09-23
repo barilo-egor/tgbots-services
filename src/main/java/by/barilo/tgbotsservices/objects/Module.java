@@ -1,4 +1,4 @@
-package by.barilo.objects;
+package by.barilo.tgbotsservices.objects;
 
 import lombok.Builder;
 import lombok.Data;
