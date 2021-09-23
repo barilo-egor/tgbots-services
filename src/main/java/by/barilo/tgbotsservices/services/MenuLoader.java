@@ -5,6 +5,7 @@ import by.barilo.tgbotsservices.objects.MenuItem;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -14,11 +15,21 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Egor Barilo
+ * @version 1.0
+ */
 public class MenuLoader {
     private static final String MENU_ITEM_ATTRIBUTE_NAME = "item";
 
     private static List<MenuItem> menuItems;
 
+    /**
+     * Загружает меню из xml-файла.
+     * @param fileName относительный путь с названием.
+     *                 К примеру: "config/menu.xml".
+     * @return Если парсинг прошел успешно, возвращает true, иначе false.
+     */
     public static boolean load(String fileName) {
         try {
             menuItems = parseMenuItems(DocumentBuilderFactory.newInstance().newDocumentBuilder()
@@ -59,6 +70,11 @@ public class MenuLoader {
         return menuItem;
     }
 
+    /**
+     * Возвращает сформированные пункты меню. Перед использованием метода следует сначала их загрузить
+     * с помощью метода "load()".
+     * @return сформированные пункты меню
+     */
     public static List<MenuItem> getMenuItems() {
         return menuItems;
     }
