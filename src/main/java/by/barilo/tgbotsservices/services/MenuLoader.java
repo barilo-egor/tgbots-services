@@ -4,10 +4,13 @@ import by.barilo.tgbotsservices.enums.MenuItemsAttribute;
 import by.barilo.tgbotsservices.objects.MenuItem;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,17 +38,10 @@ public final class MenuLoader {
      * moduleId - идентификатор модуля, который следует запустить по нажатию <br/>
      * @param fileName относительный (к директории проекта/jar-архива) путь с названием.
      *                 К примеру: "config/menu.xml".
-     * @return Если парсинг прошел успешно, возвращает true, иначе false.
      */
-    public static boolean load(String fileName) {
-        try {
-            menuItems = parseMenuItems(DocumentBuilderFactory.newInstance().newDocumentBuilder()
+    public static void load(String fileName) throws ParserConfigurationException, IOException, SAXException {
+        menuItems = parseMenuItems(DocumentBuilderFactory.newInstance().newDocumentBuilder()
                                     .parse(new File(fileName)).getElementsByTagName(MENU_ITEM_ATTRIBUTE_NAME));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
     }
 
     private static List<MenuItem> parseMenuItems(NodeList nodeList) {
