@@ -1,13 +1,10 @@
 package by.barilo.tgbotsservices.bot;
 
-import by.barilo.tgbotsservices.services.MenuLoader;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Service
 @PropertySource("classpath:bot.properties")
@@ -29,6 +26,6 @@ public class TestBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-
+        // for tests
     }
 }

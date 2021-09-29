@@ -6,7 +6,6 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
@@ -18,7 +17,7 @@ import java.util.List;
  * @author Egor Barilo
  * @version 1.0
  */
-public final class MenuLoader {
+final class MenuLoader {
     private MenuLoader() {
     }
 

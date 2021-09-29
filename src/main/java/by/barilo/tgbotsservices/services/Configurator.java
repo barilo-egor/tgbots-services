@@ -16,7 +16,8 @@ public final class Configurator {
      * @return true - если конфигурация прошла успешно, иначе false
      */
     public static boolean configure(Configuration configuration) {
-        return configureMenuLoader(configuration.getMenuFile());
+        return ServicesPropertiesUtil.loadProperties()
+                && configureMenuLoader(configuration.getMenuFile());
     }
 
     private static boolean configureMenuLoader(String filename) {
