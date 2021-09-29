@@ -5,6 +5,7 @@ import by.barilo.tgbotsservices.objects.MenuItem;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 
+import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.ArrayList;
@@ -14,13 +15,24 @@ import java.util.List;
  * @author Egor Barilo
  * @version 1.0
  */
-public class MenuLoader {
+public final class MenuLoader {
+    private MenuLoader() {
+    }
+
     private static final String MENU_ITEM_ATTRIBUTE_NAME = "item";
 
     private static List<MenuItem> menuItems;
 
     /**
-     * Загружает меню из xml-файла.
+     * Загружает меню из xml-файла.<br/>
+     * <b>Теги: </b> <br/>
+     * menu - общий тег <br/>
+     * item - кнопка <br/>
+     * <b>Атрибуты:</b> <br/>
+     * title - наименование кнопки <br/>
+     * id - идентификатор кнопки (нужен для дочерних кнопок) <br/>
+     * parent - ссылка на родительскую кнопку <br/>
+     * moduleId - идентификатор модуля, который следует запустить по нажатию <br/>
      * @param fileName относительный (к директории проекта/jar-архива) путь с названием.
      *                 К примеру: "config/menu.xml".
      * @return Если парсинг прошел успешно, возвращает true, иначе false.
