@@ -4,6 +4,7 @@ import by.barilo.tgbotsservices.objects.Module;
 
 public class ModuleLoader {
     public static Module getById(String id) {
-        return Module.builder().id(id).build();
+        // TODO после апи сервиса
+        return null;
     }
 }
