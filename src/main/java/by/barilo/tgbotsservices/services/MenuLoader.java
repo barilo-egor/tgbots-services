@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Egor Barilo
@@ -48,6 +49,7 @@ final class MenuLoader {
         for(int i = 0; i < nodeList.getLength(); i++) {
             menuItems.add(createMenuItem(nodeList.item(i).getAttributes()));
         }
+        setChildItems(menuItems);
         return menuItems;
     }
 
@@ -79,5 +81,22 @@ final class MenuLoader {
      */
     public static List<MenuItem> getMenuItems() {
         return menuItems;
+    }
+
+    public static void setChildItems(List<MenuItem> menuItems) {
+        for(MenuItem menuItem : menuItems) {
+            if(Objects.nonNull(menuItem.getParent())) {
+                MenuItem parent = getById(menuItem.getParent(), menuItems);
+                if(Objects.nonNull(parent.getChildIds())) {
+                    parent.getChildIds().add(menuItem.getId());
+                } else {
+                    parent.setChildIds(List.of(menuItem.getId()));
+                }
+            }
+        }
+    }
+
+    public static MenuItem getById(String id, List<MenuItem> menuItems) {
+        return menuItems.stream().filter(menuItem -> menuItem.getId().equals(id)).findFirst().get();
     }
 }
