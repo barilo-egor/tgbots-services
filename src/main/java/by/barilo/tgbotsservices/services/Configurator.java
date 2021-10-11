@@ -17,7 +17,8 @@ public final class Configurator {
      */
     public static boolean configure(Configuration configuration) {
         return ServicesPropertiesUtil.loadProperties()
-                && configureMenuLoader(configuration.getMenuFile());
+                && configureMenuLoader(configuration.getMenuFile())
+                && MenuBuilder.build();
     }
 
     private static boolean configureMenuLoader(String filename) {

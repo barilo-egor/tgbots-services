@@ -2,6 +2,7 @@ package by.barilo.tgbotsservices.services;
 
 import by.barilo.tgbotsservices.enums.MenuItemsAttribute;
 import by.barilo.tgbotsservices.objects.MenuItem;
+import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -15,15 +16,17 @@ import java.util.List;
 
 /**
  * @author Egor Barilo
- * @version 1.0
+ * @version 1.11
  */
 final class MenuLoader {
     private MenuLoader() {
     }
 
     private static final String MENU_ITEM_ATTRIBUTE_NAME = "item";
+    public static final String NUMBER_OF_COLUMNS_ATTRIBUTE_NAME = "numberOfColumns";
 
     private static List<MenuItem> menuItems;
+    private static int numberOfColumns;
 
     /**
      * Загружает меню из xml-файла.<br/>
@@ -39,8 +42,10 @@ final class MenuLoader {
      *                 К примеру: "config/menu.xml".
      */
     public static void load(String fileName) throws ParserConfigurationException, IOException, SAXException {
-        menuItems = parseMenuItems(DocumentBuilderFactory.newInstance().newDocumentBuilder()
-                                    .parse(new File(fileName)).getElementsByTagName(MENU_ITEM_ATTRIBUTE_NAME));
+        Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+                .parse(new File(fileName));
+        menuItems = parseMenuItems(document.getElementsByTagName(MENU_ITEM_ATTRIBUTE_NAME));
+        numberOfColumns = Integer.parseInt(document.getElementById(NUMBER_OF_COLUMNS_ATTRIBUTE_NAME).getNodeValue());
     }
 
     private static List<MenuItem> parseMenuItems(NodeList nodeList) {
@@ -79,5 +84,13 @@ final class MenuLoader {
      */
     public static List<MenuItem> getMenuItems() {
         return menuItems;
+    }
+
+    /**
+     * Возвращает количество колонок в основном меню.
+     * @return количество колонок
+     */
+    public static int getNumberOfColumns() {
+        return numberOfColumns;
     }
 }
